@@ -45,4 +45,9 @@ public class PokemonManager
         var json = File.ReadAllText(_filePath);
         _pokemons = JsonSerializer.Deserialize<List<Pokemon>>(json) ?? new();
     }
+
+    public Pokemon getPokemon(string name)
+    {
+        return _pokemons.FirstOrDefault(p => p.Name == name);
+    }
 }

@@ -3,7 +3,8 @@
     "Name": "Patrat",
     "Type": 0,
     "Exp": 0,
-    "Hp": 10,
+    "CurrHp": 10,
+    "MaxHp": 10,
     "Attack": 10,
     "Defense": 10,
     "Move1": {
@@ -25,7 +26,8 @@
     "Name": "Tepig",
     "Type": 1,
     "Exp": 0,
-    "Hp": 10,
+    "CurrHp": 10,
+    "MaxHp": 10,
     "Attack": 10,
     "Defense": 10,
     "Move1": {
@@ -47,7 +49,8 @@
     "Name": "Snivy",
     "Type": 2,
     "Exp": 0,
-    "Hp": 10,
+    "CurrHp": 10,
+    "MaxHp": 10,
     "Attack": 10,
     "Defense": 10,
     "Move1": {
@@ -69,7 +72,8 @@
     "Name": "Oshawott",
     "Type": 3,
     "Exp": 0,
-    "Hp": 10,
+    "CurrHp": 10,
+    "MaxHp": 10,
     "Attack": 10,
     "Defense": 10,
     "Move1": {

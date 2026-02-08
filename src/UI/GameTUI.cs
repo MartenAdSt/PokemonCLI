@@ -1,34 +1,102 @@
-namespace PokemonCLI;
+namespace PokemonCLI.UI;
+
+using Models;
+using Services;
 
 // ReSharper disable once InconsistentNaming
-public class GameTUI
+public class GameTUI(string pokemonsFilePath)
 {
-    public string ChooseStarter()
+    private readonly PokemonManager _pokemonManager = new (pokemonsFilePath);
+    
+    public Pokemon ChooseStarter()
     {
+        Console.WriteLine("------------------------------------------");
         Console.WriteLine("What pokemon would you like to use?");
-        Console.WriteLine("Patrat - Tepig - Snivy - Oshawott");
+        Console.WriteLine("Patrat | Tepig | Snivy | Oshawott");
 
         while (true)
         {
             string? input = Console.ReadLine();
-
-            string? pokemonName = input switch
-            {
-                "Patrat" => "patrat",
-                "Tepig" => "tepig",
-                "Snivy" => "snivy",
-                "Oshawott" => "oshawott",
-                _ => null
-            };
+            
+            string[] validStarters = ["Patrat", "Tepig", "Snivy", "Oshawott"];
+            string? pokemonName = validStarters.Contains(input) ? input : null;
 
             if (pokemonName != null)
             {
+                Console.WriteLine("------------------------------------------");
                 Console.WriteLine($"You chose {input}!");
-                return pokemonName;
+                return _pokemonManager.getPokemon(pokemonName);
             }
+            
+            Console.WriteLine("------------------------------------------");
             Console.WriteLine("Please enter a valid pokemon name.");
-            Console.WriteLine("Patrat - Tepig - Snivy - Oshawott");
-        
+            Console.WriteLine("Patrat | Tepig | Snivy | Oshawott");
         }
+    }
+
+    public Pokemon ChooseOpponent(string starter)
+    {
+        Console.WriteLine("------------------------------------------");
+        Console.WriteLine("What pokemon would you like to battle?");
+        Console.WriteLine("Patrat | Tepig | Snivy | Oshawott");
+        while (true)
+        {
+            string? input = Console.ReadLine();
+            
+            string[] validPokemons = ["Patrat", "Tepig", "Snivy", "Oshawott"];
+            string? pokemonName = validPokemons.Contains(input) ? input : null;
+
+            if (pokemonName != null && pokemonName != starter)
+            {
+                Console.WriteLine("------------------------------------------");
+                Console.WriteLine($"You chose {input}!");
+                return _pokemonManager.getPokemon(pokemonName);
+            }
+
+            if (pokemonName == starter)
+            {
+                Console.WriteLine("You cannot battle yourself");
+            }
+            
+            Console.WriteLine("------------------------------------------");
+            Console.WriteLine("Please enter a valid pokemon name.");
+            Console.WriteLine("Patrat | Tepig | Snivy | Oshawott");
+        }
+    }
+
+    public void ShowAllyPokemon(Pokemon pokemon)
+    {
+        Console.WriteLine($"""
+                          ----------------------------------------------------------------------------------------------                
+                          Your {pokemon.Name} ({pokemon.Type}) has {pokemon.CurrHp}/{pokemon.MaxHp} HP 
+                          
+                          | {pokemon.Move1.Name} ({pokemon.Move1.Type})     
+                          | {pokemon.Move1.Power} Power {pokemon.Move1.Accuracy} Acc  
+                          
+                          | {pokemon.Move2.Name} ({pokemon.Move2.Type}) 
+                          | {pokemon.Move2.Power} Power {pokemon.Move2.Accuracy} Acc 
+                          ----------------------------------------------------------------------------------------------                
+                          """);
+    }
+
+    public void ShowEnemyPokemon(Pokemon pokemon)
+    {
+        Console.WriteLine($"""
+                           ----------------------------------------------------------------------------------------------                
+                           Opponent {pokemon.Name} ({pokemon.Type}) has {pokemon.CurrHp}/{pokemon.MaxHp} HP 
+                           """);
+    }
+
+    public void ShowInstructions()
+    {
+        Console.WriteLine("Type '1' or '2' to use that move.");
+        Console.ReadLine();
+    }
+
+    public void BattleUI(Pokemon ally, Pokemon enemy)
+    {
+        ShowEnemyPokemon(enemy);
+        ShowAllyPokemon(ally);
+        ShowInstructions();
     }
 }
