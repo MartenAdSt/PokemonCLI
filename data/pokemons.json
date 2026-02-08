@@ -1,18 +1,90 @@
 [
   {
     "Name": "Patrat",
-    "Type": 0
+    "Type": 0,
+    "Exp": 0,
+    "Hp": 10,
+    "Attack": 10,
+    "Defense": 10,
+    "Move1": {
+      "Name": "Tackle",
+      "Description": "A basic normal movement",
+      "Type": 0,
+      "Power": 40,
+      "Accuracy": 100
+    },
+    "Move2": {
+      "Name": "Tail whip",
+      "Description": "Lowers the opponents defense stat",
+      "Type": 0,
+      "Power": 0,
+      "Accuracy": 100
+    }
   },
   {
     "Name": "Tepig",
-    "Type": 2
+    "Type": 1,
+    "Exp": 0,
+    "Hp": 10,
+    "Attack": 10,
+    "Defense": 10,
+    "Move1": {
+      "Name": "Tackle",
+      "Description": "A basic normal movement",
+      "Type": 0,
+      "Power": 40,
+      "Accuracy": 100
+    },
+    "Move2": {
+      "Name": "Ember",
+      "Description": "A basic fire movement",
+      "Type": 1,
+      "Power": 40,
+      "Accuracy": 100
+    }
   },
   {
     "Name": "Snivy",
-    "Type": 3
+    "Type": 2,
+    "Exp": 0,
+    "Hp": 10,
+    "Attack": 10,
+    "Defense": 10,
+    "Move1": {
+      "Name": "Tackle",
+      "Description": "A basic normal movement",
+      "Type": 0,
+      "Power": 40,
+      "Accuracy": 100
+    },
+    "Move2": {
+      "Name": "Vine whip",
+      "Description": "A basic grass movement",
+      "Type": 2,
+      "Power": 40,
+      "Accuracy": 100
+    }
   },
   {
     "Name": "Oshawott",
-    "Type": 1
+    "Type": 3,
+    "Exp": 0,
+    "Hp": 10,
+    "Attack": 10,
+    "Defense": 10,
+    "Move1": {
+      "Name": "Tackle",
+      "Description": "A basic normal movement",
+      "Type": 0,
+      "Power": 40,
+      "Accuracy": 100
+    },
+    "Move2": {
+      "Name": "Water gun",
+      "Description": "A basic water movement",
+      "Type": 3,
+      "Power": 40,
+      "Accuracy": 100
+    }
   }
 ]
