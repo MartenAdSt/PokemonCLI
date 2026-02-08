@@ -1,4 +1,4 @@
-namespace PokemonCLI.Data_Structures;
+namespace PokemonCLI.Models;
 
 public enum Type
 {
