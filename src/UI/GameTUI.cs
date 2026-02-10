@@ -87,10 +87,21 @@ public class GameTUI(string pokemonsFilePath)
                            """);
     }
 
-    public void ShowInstructions()
+    public int ShowInstructions()
     {
         Console.WriteLine("Type '1' or '2' to use that move.");
-        Console.ReadLine();
+        while (true)
+        {
+            string? input = Console.ReadLine();
+            if (input == null || input.Length > 1 || !Char.IsDigit(input[0]))
+            {
+                Console.WriteLine("Type '1' or '2' to use that move.");
+            }
+            else
+            {
+                return int.Parse(input);
+            }
+        }
     }
 
     public void BattleUI(Pokemon ally, Pokemon enemy)
