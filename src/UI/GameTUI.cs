@@ -87,7 +87,7 @@ public class GameTUI(string pokemonsFilePath)
                            """);
     }
 
-    public int ShowInstructions()
+    public int AskForMove()
     {
         Console.WriteLine("Type '1' or '2' to use that move.");
         while (true)
@@ -108,6 +108,5 @@ public class GameTUI(string pokemonsFilePath)
     {
         ShowEnemyPokemon(enemy);
         ShowAllyPokemon(ally);
-        ShowInstructions();
     }
 }

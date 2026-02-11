@@ -16,6 +16,54 @@ public class Battle
         Tui = tui;
     }
 
+    public void StartGame()
+    {   
+        var rnd = new Random();
+        while (Ally.CurrHp > 0 && Enemy.CurrHp > 0)
+        {
+            Tui.BattleUI(Ally, Enemy);
+            var allyMove = ManualMove();
+            var enemyMove = AIMove();
+            int turn = rnd.Next(0, 2);
+            if (turn == 0)
+            {
+                
+            }
+            else
+            {
+                
+            }
+            
+
+
+        }
+    }
+
+    private Move ManualMove()
+    {
+        var moveIndex = Tui.AskForMove();
+        Move move = moveIndex switch
+        {
+            1 => Ally.Move1,
+            2 => Ally.Move2,
+            _ => throw new Exception("Unknown move: " + moveIndex)
+        };
+        return move;
+    }
+
+    private Move AIMove()
+    {
+        var rnd = new Random();
+        var moveIndex = rnd.Next(1, 3);
+        Move move = moveIndex switch
+        {
+            1 => Enemy.Move1,
+            2 => Enemy.Move2,
+            _ => throw new Exception("Unknown move: " + moveIndex)
+        };
+        return move;
+    }
+
     private double CalculateDamage(Pokemon attacker, Move move, Pokemon defender)
     {
         var stab = Stab(attacker.Type, move.Type);
