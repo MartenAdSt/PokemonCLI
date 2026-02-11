@@ -124,13 +124,14 @@ public class GameTUI(string pokemonsFilePath)
     private void WaitDots(int ticks)
     {
         var tick = 0;
-        while (tick < ticks)
+        while (tick < ticks - 1)
         {
             Console.Write(".");
-            Thread.Sleep(10);
+            Thread.Sleep(500);
             tick++;
         }
-        Thread.Sleep(100);
+        Console.WriteLine(".");
+        Thread.Sleep(1000);
     }
 
     private void EffectivenessMessage(Move move, Pokemon defender)
@@ -162,14 +163,14 @@ public class GameTUI(string pokemonsFilePath)
     {
         Console.WriteLine($"""
                            ----------------------------------------------------------------------------------------------                
-                           {pokemon.Name} has fainted.)
+                           {pokemon.Name} has fainted.
                            """);
     }
 
     public void WinnerMessage(Pokemon pokemon)
     {
         Console.WriteLine($"""
-                           {pokemon.Name} won the battle!)
+                           {pokemon.Name} won the battle!
                            """);
     }
     
