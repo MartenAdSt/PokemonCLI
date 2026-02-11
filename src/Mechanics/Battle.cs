@@ -21,6 +21,7 @@ public class Battle
         var rnd = new Random();
         while (Ally.CurrHp > 0 && Enemy.CurrHp > 0)
         {
+            Tui.WhiteSpace();
             Tui.BattleUI(Ally, Enemy);
             var allyMove = ManualMove(Ally);
             var enemyMove = AIMove();
@@ -114,7 +115,8 @@ public class Battle
         var rnd = new Random();
         double random = (double)rnd.Next(217, 256) / 255;
         
-        double power = ((attackOverDefense * move.Power) / 50) + 2;
+        //Originally had +2 at the end but removed as 0-power moves dealt damage
+        double power = ((attackOverDefense * move.Power) / 50);
 
         var result = power * stab * multiplier * random;
         

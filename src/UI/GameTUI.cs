@@ -258,6 +258,11 @@ public class GameTUI(string pokemonsFilePath)
         }
         return effectiveness;
     }
-    
-    
+
+    public void WhiteSpace()
+    {
+        Console.WriteLine($"""
+
+                           """);
+    }
 }
