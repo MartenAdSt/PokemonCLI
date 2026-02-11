@@ -32,18 +32,24 @@ public class Battle
             {
                 MakeMove(Ally, allyMove, Enemy);
                 Tui.AttackUI(Ally, allyMove, Enemy);
-                
-                MakeMove(Enemy, enemyMove, Ally);
-                Tui.AttackUI(Enemy, enemyMove, Ally);
+
+                if (Enemy.CurrHp > 0)
+                {
+                    MakeMove(Enemy, enemyMove, Ally);
+                    Tui.AttackUI(Enemy, enemyMove, Ally);
+                }
             }
             //Enemy's move is first
             else
             {
                 MakeMove(Enemy, enemyMove, Ally);
                 Tui.AttackUI(Enemy, enemyMove, Ally);
-
-                MakeMove(Ally, allyMove, Enemy);
-                Tui.AttackUI(Ally, allyMove, Enemy);
+                
+                if (Ally.CurrHp > 0)
+                {
+                    MakeMove(Ally, allyMove, Enemy);
+                    Tui.AttackUI(Ally, allyMove, Enemy);
+                }
 
             }
         }
