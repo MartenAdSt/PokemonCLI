@@ -115,8 +115,7 @@ public class Battle
         var rnd = new Random();
         double random = (double)rnd.Next(217, 256) / 255;
         
-        //Originally had +2 at the end but removed as 0-power moves dealt damage
-        double power = ((attackOverDefense * move.Power) / 50);
+        double power = ((attackOverDefense * move.Power) / 50) + 2;
 
         var result = power * stab * multiplier * random;
         
