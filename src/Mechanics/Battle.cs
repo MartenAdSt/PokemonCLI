@@ -25,17 +25,39 @@ public class Battle
             var allyMove = ManualMove();
             var enemyMove = AIMove();
             int turn = rnd.Next(0, 2);
+            
+            //TODO make this speed dependent
+            //Ally's move is first
             if (turn == 0)
             {
+                MakeMove(Ally, allyMove, Enemy);
+                Tui.AttackUI(Ally, allyMove, Enemy);
                 
+                MakeMove(Enemy, enemyMove, Ally);
+                Tui.AttackUI(Enemy, enemyMove, Ally);
             }
+            //Enemy's move is first
             else
             {
-                
+                MakeMove(Enemy, enemyMove, Ally);
+                Tui.AttackUI(Enemy, enemyMove, Ally);
+
+                MakeMove(Ally, allyMove, Enemy);
+                Tui.AttackUI(Ally, allyMove, Enemy);
+
             }
-            
-
-
+        }
+        
+        //Announce winner
+        if (Ally.CurrHp > 0)
+        {
+            Tui.FaintedMessage(Enemy);
+            Tui.WinnerMessage(Ally);
+        }
+        else
+        {
+            Tui.FaintedMessage(Ally);
+            Tui.WinnerMessage(Enemy);
         }
     }
 
@@ -64,7 +86,14 @@ public class Battle
         return move;
     }
 
-    private double CalculateDamage(Pokemon attacker, Move move, Pokemon defender)
+    private void MakeMove(Pokemon attacker, Move move, Pokemon defender)
+    {
+        var damage = CalculateDamage(attacker, move, defender);
+        defender.TakeDamage(damage);
+        
+    }
+
+    private int CalculateDamage(Pokemon attacker, Move move, Pokemon defender)
     {
         var stab = Stab(attacker.Type, move.Type);
         var multiplier = TypeMultiplier(move.Type, defender.Type);
@@ -76,8 +105,10 @@ public class Battle
         double random = (double)rnd.Next(217, 256) / 255;
         
         double power = ((attackOverDefense * move.Power) / 50) + 2;
+
+        var result = power * stab * multiplier * random;
         
-        return power * stab * multiplier * random;
+        return (int)result;
     }
 
     private double Stab(Type attacker, Type move)
