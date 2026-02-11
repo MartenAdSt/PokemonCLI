@@ -1,4 +1,5 @@
 ﻿using PokemonCLI;
+using PokemonCLI.Mechanics;
 using PokemonCLI.Models;
 using PokemonCLI.Services;
 using Type = PokemonCLI.Models.Type;
@@ -32,6 +33,6 @@ GameTUI tui = new (pokemonsFilePath);
 var starter = tui.ChooseStarter();
 var enemy = tui.ChooseOpponent(starter.Name);
 
-tui.BattleUI(starter, enemy);
-
+var battle = new Battle(starter, enemy, tui);
+battle.StartBattle();
 

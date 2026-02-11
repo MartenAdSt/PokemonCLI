@@ -16,7 +16,7 @@ public class Battle
         Tui = tui;
     }
 
-    public void StartGame()
+    public void StartBattle()
     {   
         var rnd = new Random();
         while (Ally.CurrHp > 0 && Enemy.CurrHp > 0)
