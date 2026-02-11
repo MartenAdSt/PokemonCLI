@@ -22,7 +22,7 @@ public class Battle
         while (Ally.CurrHp > 0 && Enemy.CurrHp > 0)
         {
             Tui.BattleUI(Ally, Enemy);
-            var allyMove = ManualMove();
+            var allyMove = ManualMove(Ally);
             var enemyMove = AIMove();
             int turn = rnd.Next(0, 2);
             
@@ -32,12 +32,14 @@ public class Battle
             {
                 MakeMove(Ally, allyMove, Enemy);
                 Tui.AttackUI(Ally, allyMove, Enemy);
+                
 
                 if (Enemy.CurrHp > 0)
                 {
+                    Tui.ShowEnemyPokemon(Enemy);
                     MakeMove(Enemy, enemyMove, Ally);
                     Tui.AttackUI(Enemy, enemyMove, Ally);
-                }
+                } 
             }
             //Enemy's move is first
             else
@@ -45,12 +47,14 @@ public class Battle
                 MakeMove(Enemy, enemyMove, Ally);
                 Tui.AttackUI(Enemy, enemyMove, Ally);
                 
+                
                 if (Ally.CurrHp > 0)
                 {
+                    Tui.ShowAllyPokemon(Ally);
                     MakeMove(Ally, allyMove, Enemy);
                     Tui.AttackUI(Ally, allyMove, Enemy);
                 }
-
+                
             }
         }
         
@@ -67,9 +71,9 @@ public class Battle
         }
     }
 
-    private Move ManualMove()
+    private Move ManualMove(Pokemon pokemon)
     {
-        var moveIndex = Tui.AskForMove();
+        var moveIndex = Tui.AskForMove(pokemon);
         Move move = moveIndex switch
         {
             1 => Ally.Move1,

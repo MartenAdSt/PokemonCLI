@@ -69,26 +69,29 @@ public class GameTUI(string pokemonsFilePath)
         Console.WriteLine($"""
                           ----------------------------------------------------------------------------------------------                
                           Your {pokemon.Name} ({pokemon.Type}) has {pokemon.CurrHp}/{pokemon.MaxHp} HP 
-                          
-                          | {pokemon.Move1.Name} ({pokemon.Move1.Type})     
-                          | {pokemon.Move1.Power} Power {pokemon.Move1.Accuracy} Acc  
-                          
-                          | {pokemon.Move2.Name} ({pokemon.Move2.Type}) 
-                          | {pokemon.Move2.Power} Power {pokemon.Move2.Accuracy} Acc 
-                          ----------------------------------------------------------------------------------------------                
                           """);
+        Thread.Sleep(1000);
     }
 
     public void ShowEnemyPokemon(Pokemon pokemon)
     {
         Console.WriteLine($"""
-                           ----------------------------------------------------------------------------------------------                
+                           ---------------------------------------------------------------------------------------------               
                            Opponent {pokemon.Name} ({pokemon.Type}) has {pokemon.CurrHp}/{pokemon.MaxHp} HP 
                            """);
+        Thread.Sleep(1000);
     }
 
-    public int AskForMove()
+    public int AskForMove(Pokemon pokemon)
     {
+        Console.WriteLine($"""
+                           | {pokemon.Move1.Name} ({pokemon.Move1.Type})     
+                           | {pokemon.Move1.Power} Power {pokemon.Move1.Accuracy} Acc  
+
+                           | {pokemon.Move2.Name} ({pokemon.Move2.Type}) 
+                           | {pokemon.Move2.Power} Power {pokemon.Move2.Accuracy} Acc 
+                           ---------------------------------------------------------------------------------------------            
+                           """);
         Console.WriteLine("Type '1' or '2' to use that move.");
         while (true)
         {
@@ -113,8 +116,8 @@ public class GameTUI(string pokemonsFilePath)
     public void AttackUI(Pokemon attacker, Move move, Pokemon defender)
     {
         Console.WriteLine($"""
-                           ----------------------------------------------------------------------------------------------                
-                           {attacker.Name} ({attacker.Type}) used {move} ({move.Type}) 
+                           ---------------------------------------------------------------------------------------------              
+                           {attacker.Name} ({attacker.Type}) used {move.Name} ({move.Type}) 
                            """);
         WaitDots(3);
         
@@ -127,7 +130,7 @@ public class GameTUI(string pokemonsFilePath)
         while (tick < ticks - 1)
         {
             Console.Write(".");
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
             tick++;
         }
         Console.WriteLine(".");
@@ -157,12 +160,13 @@ public class GameTUI(string pokemonsFilePath)
                                    """);
                 break;
         }
+        WaitDots(3);
     }
 
     public void FaintedMessage(Pokemon pokemon)
     {
         Console.WriteLine($"""
-                           ----------------------------------------------------------------------------------------------                
+                           ---------------------------------------------------------------------------------------------              
                            {pokemon.Name} has fainted.
                            """);
     }
